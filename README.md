@@ -1,7 +1,7 @@
 # homelab-dns-tracer
 
-A simple DNS latency exporter for Prometheus/Grafana, designed for homelab DNS chains. 
- 
+A simple DNS latency exporter for Prometheus/Grafana, designed for homelab DNS chains.
+
 **Measures per-hop, chain, and entrypoint DNS latency for any set of queries and servers.**
 
 ---

@@ -6,7 +6,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 
 import dns.resolver
 import yaml
-from prometheus_client import Gauge, Counter, start_http_server
+from prometheus_client import Counter, Gauge, start_http_server
 
 CONFIG_FILE = os.environ.get("DNS_EXPORTER_CONFIG", "config.yaml")
 
