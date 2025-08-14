@@ -86,6 +86,7 @@ You should see log output and the Prometheus exporter running at `http://localho
 - **dns_trace_chain_latency_seconds{query_name,query_type}** — sum of all hops
 - **dns_trace_entrypoint_latency_seconds{query_name,query_type,entrypoint}** — entrypoint (end-to-end) latency
 - **dns_trace_probe_failed_total**{query_name,query_type,hop} - per-hop failures
+- **dns_trace_entrypoint_probe_failed_total{query_name, query_type, entrypoint}** - entrypoint failures
 
 ## Using with Prometheus & Grafana
 
