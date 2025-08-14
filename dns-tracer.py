@@ -122,6 +122,11 @@ class DNSTraceExporter:
                 "Total failed DNS probes per Hop",
                 ["query_name", "query_type", "hop", "hop_index"],
             ),
+            "entrypoint_probe_failed_total": Counter(
+                "dns_trace_entrypoint_probe_failed_total",
+                "Total failed DNS probes per Entrypoint",
+                ["query_name", "query_type", "entrypoint"],
+            ),
         }
         max_threads = max(4, len(self.queries) * len(self.servers))
         self.executor = ThreadPoolExecutor(max_workers=max_threads)
@@ -171,19 +176,20 @@ class DNSTraceExporter:
     def probe_entrypoints(self, query):
         for entry in self.entrypoints:
             latency, failed = probe_dns(entry["address"], query["name"], query["type"])
+            label_args = dict(
+                query_name=query["name"],
+                query_type=query["type"],
+                entrypoint=entry["name"],
+            )
             if not failed and latency is not None:
-                self.metrics["entrypoint_latency"].labels(
-                    query_name=query["name"],
-                    query_type=query["type"],
-                    entrypoint=entry["name"],
-                ).set(latency)
+                self.metrics["entrypoint_latency"].labels(**label_args).set(latency)
                 logger.info(
                     f"Entrypoint: {query['name']} ({query['type']}): {entry['name']} {latency:.3f}s"
                 )
             else:
-                # Optionally, you could add a failure counter for entrypoints too.
+                self.metrics["entrypoint_probe_failed_total"].labels(**label_args).inc()
                 logger.debug(
-                    f"Entrypoint probe failure: {query['name']} ({query['type']}) via {entry['name']}"
+                    f"Entrypoint probe failure counted: {query['name']} ({query['type']}) via {entry['name']}"
                 )
 
     def run_probe(self):

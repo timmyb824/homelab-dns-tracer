@@ -10,7 +10,7 @@ repos:
     -   id: sourcery
         # * review only changed lines:
         # * omit the summary
-        args: [--diff=git diff HEAD, --no-summary, one_updater/]
+        args: [--diff=git diff HEAD, --no-summary, .]
 
 -   repo: https://github.com/psf/black
     rev: 25.1.0
