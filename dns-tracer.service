@@ -1,0 +1,12 @@
+[Unit]
+Description=DNS Trace Exporter
+
+[Service]
+ExecStart=/home/tbryant/DEV/homelab-dns-tracer/.venv/bin/python3 /home/tbryant/DEV/homelab-dns-tracer/dns-tracer.py
+WorkingDirectory=/home/tbryant/DEV/homelab-dns-tracer
+Restart=always
+User=tbryant
+Environment=DNS_EXPORTER_CONFIG=/home/tbryant/DEV/homelab-dns-tracer/config.yaml
+
+[Install]
+WantedBy=multi-user.target

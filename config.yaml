@@ -1,0 +1,26 @@
+interval: 60
+listen_port: 9115
+
+servers:
+  - name: adguard
+    address: 192.168.86.214
+  - name: unbound
+    address: 192.168.86.156
+  - name: coredns
+    address: 192.168.86.220
+
+entrypoints:
+  - name: coredns
+    address: 192.168.86.220
+
+queries:
+  - name: google.com
+    type: A
+  - name: accounts.google.com
+    type: AAAA
+  - name: n8n.timmybtech.com
+    type: AAAA
+  - name: n8n.local.timmybtech.com
+    type: A
+  - name: n8n.local.timmybtech.com
+    type: CNAME
