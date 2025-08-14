@@ -123,9 +123,11 @@ avg(dns_trace_chain_latency_seconds)
 ## FAQ
 
 Q: Why do some queries fail for unbound?
+
 A: If you use DNS rewrites (e.g., CNAMEs or local zones) in CoreDNS/AdGuard, but not Unbound, queries for internal-only names may fail when probing Unbound directly. This is expected.
 
 Q: Can I use this for external DNS?
+
 A: Yes! Just add public resolvers and public queries to your config.
 
 ## Requirements
