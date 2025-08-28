@@ -141,7 +141,7 @@ A: Yes! Just add public resolvers and public queries to your config.
 
 ## License
 
-MIT or your choice.
+MIT
 
 ## PRs and improvements welcome!
 
